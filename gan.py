@@ -183,7 +183,8 @@ class GAN(object):
             # copy weights from pre-training over to new D network
             for i, v in enumerate(self.d_params):
                 session.run(v.assign(self.weightsD[i]))
-
+            self._plot_distributions(session)
+            
             for step in xrange(self.num_steps):
                 # update discriminator
                 x = self.data.sample(self.batch_size)
