@@ -82,7 +82,7 @@ def minibatch(input, num_kernels=5, kernel_dim=3):
     diffs = tf.expand_dims(activation, 3) - tf.expand_dims(tf.transpose(activation, [1, 2, 0]), 0)
     abs_diffs = tf.reduce_sum(tf.abs(diffs), 2)
     minibatch_features = tf.reduce_sum(tf.exp(-abs_diffs), 2)
-    return tf.concat(1, [input, minibatch_features])
+    return tf.concat([input, minibatch_features], 1)
 
 
 def optimizer(loss, var_list, initial_learning_rate):
